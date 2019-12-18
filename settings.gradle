@@ -1,0 +1,6 @@
+include ':app'
+rootProject.name='PorcupineTest'
+include ':porcupine'
+project(':porcupine').projectDir = new File(settingsDir, "/binding/Porcupine/app")
+include ':porcupineManager'
+project(':porcupineManager').projectDir = new File(settingsDir, "/binding/PorcupineManager/app")
