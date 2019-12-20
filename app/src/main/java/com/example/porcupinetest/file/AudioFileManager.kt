@@ -9,7 +9,7 @@ import java.io.File
 class AudioFileManager(context: Context) {
     companion object{
         private const val TIME_PER_FILE = 10
-        private const val SIZE_PER_SEC = 32000
+        private const val SIZE_PER_SEC = 32768
         private const val MAX_FILE_SIZE = TIME_PER_FILE * SIZE_PER_SEC
 
         private const val DIR_RAW = "raw"
@@ -37,7 +37,7 @@ class AudioFileManager(context: Context) {
 
     private val rawFileManager = RawFileManager(dirRaw, MAX_FILE_SIZE, MAX_FILE_POOL)
     private val processFileManager = ProcessFileManager(dirProcess)
-    private val waveFileManager = WaveFileManager(dirProcess, dirWave)
+    private val waveFileManager = WaveFileManager(context, dirProcess, dirWave, dirReady)
 
     private val timer = RxTimer()
     private var isProcessPreparing = false

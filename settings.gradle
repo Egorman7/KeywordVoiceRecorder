@@ -1,5 +1,7 @@
 include ':app'
 rootProject.name='PorcupineTest'
+include ':lib'
+project(':lib').projectDir = new File(settingsDir, "/lib")
 include ':porcupine'
 project(':porcupine').projectDir = new File(settingsDir, "/binding/Porcupine/app")
 include ':porcupineManager'

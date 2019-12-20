@@ -77,13 +77,15 @@ class RawBeforeFileManager(private val rawDir: File,
         val firstFileIndex = totalFiles - fileCount
 //        val firstFile = RandomAccessFile(fileList[firstFileIndex], "rw")
 //        firstFile.seek(step)
-        val firstFile = fileList[firstFileIndex]
-        val step = firstFile.length() - lastFileSize
-        val firstData = firstFile.readBytes()
-        val croppedData = firstData.filterIndexed { index, byte ->
-            index >= step
-        }.toByteArray()
-        list.add(croppedData)
+        if(firstFileIndex >= 0) {
+            val firstFile = fileList[firstFileIndex]
+            val step = firstFile.length() - lastFileSize
+            val firstData = firstFile.readBytes()
+            val croppedData = firstData.filterIndexed { index, byte ->
+                index >= step
+            }.toByteArray()
+            list.add(croppedData)
+        }
         for(i in (firstFileIndex+1) until totalFiles){
             list.add(fileList[i].readBytes())
         }
